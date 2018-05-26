@@ -1,0 +1,85 @@
+<!doctype html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+
+<body>
+  <div style="text-align: center;">
+    <h3 style="margin-top: 20px;text-align: center;">选择您用作抵押的币种</h3>
+    <form class="layui-form" action="">
+      <div>
+        <div class="currency-wrapper">
+          <input type="radio" lay-ignore value="eth" id="eth" name="currency" style="display:none">
+          <img id="eth-img" class="currency" src="./images/eth.png" alt="" onclick="select(this.id)">
+          <span>ETH</span>
+        </div>
+        <div class="currency-wrapper">
+          <!-- <input type="radio" value= "btc" id= "btc" name="currency" style="display:none"> -->
+          <img id="btc-img" class="currency" src="./images/btc.png" alt="" onclick="select(this.id)">
+          <span style="color:#aeaeae;">BTC(即将支持)</span>
+        </div>
+      </div>
+      <button style="margin-top: 30px;" class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="approveAndOK">授权并确认</button>
+    </form>
+  </div>
+</body>
+
+<style>
+  .currency-wrapper {
+    display: inline-block;
+  }
+
+  .currency-wrapper>span {
+    color: #333;
+  }
+
+  .currency {
+    margin: 10px 40px;
+    width: 100px;
+    height: 100px;
+    display: block;
+  }
+</style>
+
+<script src="./layui/layui.js"></script>
+<script>
+  layui.use(['form'], function () {
+    var form = layui.form;
+
+    var ethRadio = document.getElementById('eth');
+    var ethImg = document.getElementById('eth-img');
+    //暂时hard code
+    ethRadio.style.display = 'none';
+    ethRadio.checked = true;
+    ethImg.style.border = '2px solid #51b6e9';
+    ethImg.style.borderRadius = '50px';
+
+    form.on('submit(approveAndOK)', function (data) {
+      parent.layer.close(parent.layer.getFrameIndex(window.name));
+
+      parent.backDebit()
+
+      return false;
+    });
+  });
+
+  function select(sId) {
+    // var oImg = document.getElementsByTagName('img');
+
+    // for (var i = 0; i < oImg.length; i++) {
+    //   if (oImg[i].id == sId) {
+    //     oImg[i].previousSibling.previousSibling.checked = true;
+    //     oImg[i].style.border = '2px solid #51b6e9';
+    //     oImg[i].style.borderRadius = '50px';
+    //   } else {
+    //     oImg[i].style.border = 'none';
+    //   }
+    // }
+  }
+
+</script>
+
+</html>

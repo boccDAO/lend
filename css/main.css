@@ -1,0 +1,171 @@
+.bocc-header {
+  height: 350px;
+  background: #1b1b1b;
+}
+
+#star {
+  background: #1b1b1b;
+  width: 100%;
+  height: 350px;
+  position: absolute;
+}
+
+.bocc-menu {
+  position: relative;
+  color: #686868;
+}
+
+.bocc-menu .bocc-menu-item {
+  position: relative;
+  float: left;
+  cursor: pointer;
+  margin: 0;
+  padding: 0 15px;
+  display: block;
+  white-space: nowrap;
+  background: 0 0;
+}
+
+.bocc-menu-item > a {
+  color: #575757;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.bocc-menu-item > a:hover {
+  color: #ddd;
+}
+
+.bocc-slogan {
+  margin-top: 20px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #eee;
+    text-align: center;
+}
+
+.bocc-slogan > p > span {
+  color: yellow;
+}
+
+.bocc-action {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.bocc-action > button {
+  width: 140px;
+  padding: 5px 20px;
+  background: transparent;
+  color: #686868;
+  border: 2px solid #2c2c2c;
+  font-size: 14px;
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.bocc-action > button:hover {
+  background: #2c2c2c;
+  color: #eee;
+  cursor: pointer;
+}
+
+.bocc-content {
+  padding: 60px;
+  text-align: center;
+}
+
+.bocc-content-wrapper {
+  text-align: center;
+}
+
+.bocc-content-item {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  padding: 20px 10px;
+  height: 150px;
+  color: #aeaeae;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.bocc-content-item:hover {
+  box-shadow: 2px 2px 15px #eee;
+}
+
+.bocc-content-item .item-detail {
+  display: inline-block;
+  margin-left: 25px;
+  text-align: left;
+  vertical-align: text-bottom;
+}
+
+.bocc-content-item .item-detail > p {
+  margin-bottom: 5px;
+}
+
+.bocc-content-item .loan-btn {
+  padding: 2px 3px;
+  color: #aeaeae;
+  background: white;
+  border: 1px solid #bdbdbd;
+  font-size: 12px;
+}
+
+/*.bocc-content-item .loan-btn:hover {
+  color: #fff;
+  background: #2c2c2c;
+  cursor: pointer;
+}*/
+
+.bocc-content-item .item-days {
+  display: inline-block;
+}
+
+.bocc-content-item .item-days .days-num { 
+  color: #333;
+  font-family: cursive;
+  font-size: 100px;
+}
+
+.bocc-content-loan {
+  margin: 30px 0 0 0;
+  padding: 10px 30px;
+  width: 600px;
+  height: 180px;
+  text-align: left;
+  font-size: 13px;
+}
+
+.bocc-content-loan > p {
+  margin: 15px 0;
+}
+
+.bocc-content-loan > p > span {
+  color: #333;
+}
+
+.bocc-footer {
+  padding-bottom: 150px;
+  background-color: #141414;
+}
+
+.bocc-footer .bocc-network-title {
+  margin: 50px;
+  font-size: 30px;
+  text-align: center;
+  color: #eee;
+}
+
+.bocc-footer .bocc-network-img {
+  text-align: center;
+}
+
+.bocc-network-img .img {
+  margin: 0 15px;
+  display: inline-block;
+  background: white;
+  padding: 40px 30px;
+}
+

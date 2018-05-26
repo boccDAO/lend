@@ -1,172 +1,292 @@
-<html>
-
-<head>
+<!doctype html>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.0/vue.js"></script>
+    <title>BOCC</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <link rel="stylesheet" href="./css/main.css">
+  </head>
+
+  <body>
+    <div class="layui-fluid" style="padding: 0 0">
+      <canvas id="star"></canvas>
+      <div class="layui-row bocc-header">
+        <div class="layui-col-md12" style="height: 60px;">
+          <div class="layui-row" style="line-height: 60px">
+            <div class="layui-col-md3" style="text-align: center;">
+              <img style="width:100px;height:26px;" src="./images/logo.jpg" alt="">
+            </div>
+            <div class="layui-col-md3 layui-col-md-offset6">
+              <ul class="bocc-menu">
+                <li class="bocc-menu-item">
+                  <a href="javascript:void(0)" >白皮书</a>
+                </li>
+                <li class="bocc-menu-item">
+                  <a href="javascript:void(0)" style="color:#ddd;">借贷</a>
+                </li>
+                <li class="bocc-menu-item">
+                  <a href="javascript:void(0)" >EN</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="layui-col-md12 bocc-slogan">
+          <p><span>极速</span>放款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资金<span>安全</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>灵活</span>还款</p>
+        </div>
+        <div class="layui-col-md12 bocc-action">
+          <button id="apply-for-loan">申请贷款</button>
+          <button id="loan-give">还款</button>
+        </div>
+      </div>
+      <div id="bocc-main" class="layui-row bocc-content">
+        <div class="bocc-content-wrapper">
+          <div class="bocc-content-item" data-days="7" >
+            <div class="item-days">
+              <span class="days-num" style="display:inline-block;margin-left:50px;">7</span>
+              <span>天</span>
+            </div>
+            <div class="item-detail">
+              <p>日利率 <span style="font-size: 17px;color: #555;">1.2‰</span></p>
+              <p>到期一次还本付息</p>
+              <button class="loan-btn" >短期便利租借</button>
+            </div>
+          </div>
+          <div class="bocc-content-item" data-days="15">
+            <div class="item-days">
+              <span class="days-num">15</span>
+              <span>天</span>
+            </div>
+            <div class="item-detail">
+              <p>日利率 <span style="font-size: 17px;color: #555;">1.1‰</span></p>
+              <p>到期一次还本付息</p>
+              <button class="loan-btn">中期小盈易借</button>
+            </div>
+          </div>
+        </div>
+        <div class="bocc-content-wrapper">
+          <div class="bocc-content-item" data-days="30">
+            <div class="item-days">
+              <span class="days-num" >30</span>
+              <span>天</span>
+            </div>
+            <div class="item-detail">
+              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
+              <p>到期一次还本付息</p>
+              <button class="loan-btn">中长期无忧贷</button>
+            </div>
+          </div>
+          <div class="bocc-content-item" data-days="60">
+            <div class="item-days">
+              <span class="days-num">60</span>
+              <span>天</span>
+            </div>
+            <div class="item-detail">
+              <p>日利率 <span style="font-size: 17px;color: #555;">0.9‰</span></p>
+              <p>到期一次还本付息</p>
+              <button class="loan-btn">长期随意自由贷</button>
+            </div>
+          </div>
+        </div>
+        <div class="bocc-content-item bocc-content-loan">
+          <p style="color:#333;">合约地址：<span id="contractadres"></span></p>
+          <p >合约 USDT 资金池：<span id="ownertoken"></span></p>
+          <p >合约 USDT 可转出：<span id="ownerapprove"></span></p>
+
+          <p>您的钱包地址是：<span id="wallet-address"></span></p>
+          <p>您目前有 <span id="have-dth"></span> 个ETH，<span id="have-usdt"></span> 个USDT</p>
+          <p>您目前的贷款信息：您抵押了 <span id="mortgage-eth"></span> 个ETH，您应该偿还 <span id="repay-usdt"></span> 个USDT，截止还款日是 <span id="repay-day"></span></p>
+          <p>当前贷款利率为：每个ETH可出借 <span id="loan-rate"></span> USDT</p>
+        </div>
+      </div>
+      <div class="layui-row bocc-footer">
+        <div class="layui-col-md12 bocc-network-title">下一代的借贷金融<span style="color: yellow;">网络</span></div>
+        <div class="bocc-network-img">
+          <div class="img">
+            <object data="./images/1.svg" style="width: 150px;height: 300px;" type="image/svg+xml"></object>
+          </div>
+          <div class="img">
+            <object data="./images/2.svg" style="width: 300px;height: 300px;" type="image/svg+xml"></object>
+          </div>
+          <div class="img">
+            <object data="./images/3.svg" style="width: 360px;height: 300px;" type="image/svg+xml"></object>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./layui/layui.js"></script>
+    <script src="./js/star.js"></script>
+    <script type="text/javascript" src="./js/BlockDebit.js"></script>
+    <script type="text/javascript" src="./js/TetherToken.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ethjs@0.3.4/dist/ethjs.min.js"></script>
     <script src="https://cdn.bootcss.com/bignumber.js/6.0.0/bignumber.min.js"></script>
-</head>
-
-<body>
-    <div class="container-fluid" id="cb">
-
-        <div>
-            <p>合约地址 {{ blockDebitAddress }}</p>
-            <p>合约 owner {{ owner }}</p>
-            <p>合约 owner USDT 余额 {{ ownerToken / 10**6 }} USDT</p>
-            <p>合约 owner 当前允许借出 {{ ownerApprove / 10**6 }} USDT</p>
-        </div>
-        <hr>
-        <div>
-            <p>你的地址是: {{ user }}. 友情提示: 如果这里是 null, 请重新刷新页面</p>
-            <p>目前有 {{currentETH / 10 ** 18}} 个以太, {{currentUSDT / 10 ** 6}} USDT</p>
-            <p>你目前的借贷信息: 你抵押了{{ debitInfo[0].toString() / 10**18 }} 以太, 你应该还 {{ debitInfo[1].toString() / 10**6 }} USDT, 截止日期是
-                {{ new Date(debitInfo[2].toNumber() * 1000) }}</p>
-            <p>当前借贷兑出率: {{ exchangeRate / 10**4}} (每以太可借出 USDT)</p>
-        </div>
-
-        <div class="row">
-            <input v-model="giveDebitEther" type="text" class="form-control" placeholder="666" aria-describedby="basic-addon1">
-            <span class="input-group-addon" id="basic-addon2">Ether</span>
-        </div>
-
-        <div class="row">
-            <input v-model="giveDebitDay" type="text" class="form-control" placeholder="666" aria-describedby="basic-addon1" v-on:change="updateDaysInterest">
-            <span class="input-group-addon" id="basic-addon2">天, 利率是万分之{{ daysInterest }}</span>
-        </div>
-
-        <div class="row">
-            <button class="btn btn-default" type="button" v-on:click="giveDebit">我要抵押</button>
-        </div>
-
-        <br>
-
-        <div class="row">
-            <button class="btn btn-default" type="button" v-on:click="backDebit1">我要还款1: 重置 USDT approve</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-default" type="button" v-on:click="backDebit2">我要还款2: 设置 USDT approve</button>
-        </div>
-        <div class="row">
-            <button class="btn btn-default" type="button" v-on:click="backDebit3">我要还款3: 还款</button>
-        </div>
-    </div>
-
-    <script type="text/javascript" src="./BlockDebit.js"></script>
-    <script type="text/javascript" src="./TetherToken.js"></script>
     <script>
-        if (typeof web3 == 'undefined') {
-            alert('No web3? You should consider trying MetaMask!')
-        }
-
-        if (web3.eth.coinbase === null) {
-            setTimeout(function(){
-                location.reload();
-            }, 3000)
-        }
-
-        web3.version.getNetwork(function (e, networkID) {
-            TetherTokenAddress = TetherTokenJSON.networks[networkID].address;
-            BlockDebitAddress = BlockDebitJSON.networks[networkID].address;
-
-            console.log(TetherTokenAddress, BlockDebitAddress);
-            console.log(web3.eth.coinbase)
-
-            eth = new Eth(web3.currentProvider);
-
-            const TetherTokenABI = TetherTokenJSON.abi
-            const TetherToken = eth.contract(TetherTokenABI).at(TetherTokenAddress);
-
-            const BlockDebitABI = BlockDebitJSON.abi
-            const BlockDebit = eth.contract(BlockDebitABI).at(BlockDebitAddress);
-
-            var cb = new Vue({
-                el: '#cb',
-                data: {
-                    inited: false,
-                    giveDebitEther: 1,
-                    giveDebitDay: 7,
-                    currentETH: 0,
-                    currentUSDT: 0,
-                    debitInfo: [new BigNumber(123.4567), new BigNumber(123.4567), new BigNumber(123.4567), new BigNumber(0), new BigNumber(0)],
-                    exchangeRate: 0,
-                    owner: 0,
-                    ownerToken: 0,
-                    ownerApprove: 0,
-                    user: "",
-                    daysInterest: 0,
-                    blockDebitAddress: BlockDebitAddress,
-                },
-                methods: {
-                    update: function () {
-                        BlockDebit.owner().then(r => cb.owner = r[0]).then(function () {
-                            TetherToken.balanceOf(cb.owner).then(r => cb.ownerToken = r[0].toNumber());
-                        }).then(function () {
-                            TetherToken.allowance(cb.owner, BlockDebitAddress).then(r => cb.ownerApprove = r[0].toNumber())
-                        });
-
-                        // ------------------------------------------------------------
-                        cb.user = web3.eth.coinbase
-
-                        // ------------------------------------------------------------
-                        web3.eth.getBalance(web3.eth.coinbase, function (err, balance) {
-                            if (err === null) {
-                                cb.currentETH = balance.toNumber()
-                            }
-                        });
-                        TetherToken.balanceOf(web3.eth.coinbase).then(r => cb.currentUSDT = r[0].toNumber());
-
-                        // 借贷信息
-                        BlockDebit.info(web3.eth.coinbase).then(r => cb.debitInfo = r[0])
-                        // 当前借贷利率
-                        BlockDebit.exchangeRate().then(r => cb.exchangeRate = r[0].toNumber())
-                    },
-                    updateDaysInterest: function () {
-                        console.log('updateDaysInterest')
-
-                        BlockDebit.getInterest(cb.giveDebitDay).then(function (r) {
-                            web3.eth.getBlockNumber(function (err, n) {
-                                if (n > r[0][1].toNumber()) {
-                                    cb.daysInterest = r[0][2].toNumber()
-                                } else {
-                                    cb.daysInterest = r[0][0].toNumber()
-                                }
-                            })
-                        })
-                    },
-                    giveDebit: function () {
-                        BlockDebit.giveDebit(cb.giveDebitDay, {
-                            'from': web3.eth.coinbase,
-                            'value': web3.toWei(cb.giveDebitEther, 'ether'),
-                            'gasLimit': 400000,
-                        }).then(function () {
-                            cb.update()
-                        })
-                    },
-                    backDebit1: function () {
-                        TetherToken.approve(BlockDebitAddress, 0, {
-                            'from': web3.eth.coinbase
-                        })
-                    },
-                    backDebit2: function () {
-                        TetherToken.approve(BlockDebitAddress, cb.debitInfo[1], {
-                            'from': web3.eth.coinbase
-                        });
-                    },
-                    backDebit3: function () {
-                        BlockDebit.backDebit({
-                            'from': web3.eth.coinbase
-                        })
-                    }
-                }
-            })
-            cb.update()
-            cb.updateDaysInterest()
-        })
+        layui.config({
+          base: './js/'
+        }).use('index');
     </script>
-</body>
+      <!-- <div class="container-fluid" id="cb">
+
+          <div>
+              <p>合约地址 {{ blockDebitAddress }}</p>
+              <p>合约 owner {{ owner }}</p>
+              <p>合约 owner USDT 余额 {{ ownerToken / 10**6 }} USDT</p>
+              <p>合约 owner 当前允许借出 {{ ownerApprove / 10**6 }} USDT</p>
+          </div>
+          <hr>
+          <div>
+              <p>你的地址是: {{ user }}. 友情提示: 如果这里是 null, 请重新刷新页面</p>
+              <p>目前有 {{currentETH / 10 ** 18}} 个以太, {{currentUSDT / 10 ** 6}} USDT</p>
+              <p>你目前的借贷信息: 你抵押了{{ debitInfo[0].toString() / 10**18 }} 以太, 你应该还 {{ debitInfo[1].toString() / 10**6 }} USDT, 截止日期是
+                  {{ new Date(debitInfo[2].toNumber() * 1000) }}</p>
+              <p>当前借贷兑出率: {{ exchangeRate / 10**4}} (每以太可借出 USDT)</p>
+          </div>
+
+          <div class="row">
+              <input v-model="giveDebitEther" type="text" class="form-control" placeholder="666" aria-describedby="basic-addon1">
+              <span class="input-group-addon" id="basic-addon2">Ether</span>
+          </div>
+
+          <div class="row">
+              <input v-model="giveDebitDay" type="text" class="form-control" placeholder="666" aria-describedby="basic-addon1" v-on:change="updateDaysInterest">
+              <span class="input-group-addon" id="basic-addon2">天, 利率是万分之{{ daysInterest }}</span>
+          </div>
+
+          <div class="row">
+              <button class="btn btn-default" type="button" v-on:click="giveDebit">我要抵押</button>
+          </div>
+
+          <br>
+
+          <div class="row">
+              <button class="btn btn-default" type="button" v-on:click="backDebit1">我要还款1: 重置 USDT approve</button>
+          </div>
+          <div class="row">
+              <button class="btn btn-default" type="button" v-on:click="backDebit2">我要还款2: 设置 USDT approve</button>
+          </div>
+          <div class="row">
+              <button class="btn btn-default" type="button" v-on:click="backDebit3">我要还款3: 还款</button>
+          </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ethjs@0.3.4/dist/ethjs.min.js"></script>
+      <script src="https://cdn.bootcss.com/bignumber.js/6.0.0/bignumber.min.js"></script>
+      <script type="text/javascript" src="./js/BlockDebit.js"></script>
+      <script type="text/javascript" src="./js/TetherToken.js"></script>
+      <script>
+          if (typeof web3 == 'undefined') {
+              alert('No web3? You should consider trying MetaMask!')
+          }
+
+          if (web3.eth.coinbase === null) {
+              setTimeout(function(){
+                  location.reload();
+              }, 3000)
+          }
+
+          web3.version.getNetwork(function (e, networkID) {
+              TetherTokenAddress = TetherTokenJSON.networks[networkID].address;
+              BlockDebitAddress = BlockDebitJSON.networks[networkID].address;
+
+              console.log(TetherTokenAddress, BlockDebitAddress);
+              console.log(web3.eth.coinbase)
+
+              eth = new Eth(web3.currentProvider);
+
+              const TetherTokenABI = TetherTokenJSON.abi
+              const TetherToken = eth.contract(TetherTokenABI).at(TetherTokenAddress);
+
+              const BlockDebitABI = BlockDebitJSON.abi
+              const BlockDebit = eth.contract(BlockDebitABI).at(BlockDebitAddress);
+
+              var cb = new Vue({
+                  el: '#cb',
+                  data: {
+                      inited: false,
+                      giveDebitEther: 1,
+                      giveDebitDay: 7,
+                      currentETH: 0,
+                      currentUSDT: 0,
+                      debitInfo: [new BigNumber(123.4567), new BigNumber(123.4567), new BigNumber(123.4567), new BigNumber(0), new BigNumber(0)],
+                      exchangeRate: 0,
+                      owner: 0,
+                      ownerToken: 0,
+                      ownerApprove: 0,
+                      user: "",
+                      daysInterest: 0,
+                      blockDebitAddress: BlockDebitAddress,
+                  },
+                  methods: {
+                      update: function () {
+                          BlockDebit.owner().then(r => cb.owner = r[0]).then(function () {
+                              TetherToken.balanceOf(cb.owner).then(r => cb.ownerToken = r[0].toNumber());
+                          }).then(function () {
+                              TetherToken.allowance(cb.owner, BlockDebitAddress).then(r => cb.ownerApprove = r[0].toNumber())
+                          });
+
+                          // ------------------------------------------------------------
+                          cb.user = web3.eth.coinbase
+
+                          // ------------------------------------------------------------
+                          web3.eth.getBalance(web3.eth.coinbase, function (err, balance) {
+                              if (err === null) {
+                                  cb.currentETH = balance.toNumber()
+                              }
+                          });
+                          TetherToken.balanceOf(web3.eth.coinbase).then(r => cb.currentUSDT = r[0].toNumber());
+
+                          // 借贷信息
+                          BlockDebit.info(web3.eth.coinbase).then(r => cb.debitInfo = r[0])
+                          // 当前借贷利率
+                          BlockDebit.exchangeRate().then(r => cb.exchangeRate = r[0].toNumber())
+                      },
+                      updateDaysInterest: function () {
+                          console.log('updateDaysInterest')
+
+                          BlockDebit.getInterest(cb.giveDebitDay).then(function (r) {
+                              web3.eth.getBlockNumber(function (err, n) {
+                                  if (n > r[0][1].toNumber()) {
+                                      cb.daysInterest = r[0][2].toNumber()
+                                  } else {
+                                      cb.daysInterest = r[0][0].toNumber()
+                                  }
+                              })
+                          })
+                      },
+                      giveDebit: function () {
+                          BlockDebit.giveDebit(cb.giveDebitDay, {
+                              'from': web3.eth.coinbase,
+                              'value': web3.toWei(cb.giveDebitEther, 'ether'),
+                              'gasLimit': 400000,
+                          }).then(function () {
+                              cb.update()
+                          })
+                      },
+                      backDebit1: function () {
+                          TetherToken.approve(BlockDebitAddress, 0, {
+                              'from': web3.eth.coinbase
+                          })
+                      },
+                      backDebit2: function () {
+                          TetherToken.approve(BlockDebitAddress, cb.debitInfo[1], {
+                              'from': web3.eth.coinbase
+                          });
+                      },
+                      backDebit3: function () {
+                          BlockDebit.backDebit({
+                              'from': web3.eth.coinbase
+                          })
+                      }
+                  }
+              })
+              cb.update()
+              cb.updateDaysInterest()
+          })
+      </script> -->
+  </body>
 
 </html>
