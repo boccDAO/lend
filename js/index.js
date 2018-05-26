@@ -22,13 +22,11 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
     }
 
     if (typeof web3 == 'undefined') {
-        alert('No web3? You should consider trying MetaMask!')
+        layer.msg('您需要先安装 MetaMask', {shade: 0.3, time: 30000});
     }
 
     if (web3.eth.coinbase === null) {
-        setTimeout(function () {
-            location.reload();
-        }, 3000)
+        layer.msg('请解锁 MetaMask 并刷新此页面', {shade: 0.3, time: 30000});
     }
 
     web3.version.getNetwork(function (e, networkID) {
