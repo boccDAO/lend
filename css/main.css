@@ -123,10 +123,20 @@
   display: inline-block;
 }
 
-.bocc-content-item .item-days .days-num { 
+.bocc-content-item .item-days .days-num {
   color: #333;
   font-family: cursive;
   font-size: 100px;
+}
+
+.bocc-content-info {
+  display: inline-block;
+  width: 300px;
+  margin: 10px;
+  padding: 20px 10px;
+  height: 250px;
+  color: #aeaeae;
+  background-color: #fff;
 }
 
 .bocc-content-loan {

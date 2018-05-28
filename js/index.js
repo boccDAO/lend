@@ -22,11 +22,11 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
     }
 
     if (typeof web3 == 'undefined') {
-        layer.msg('您需要先安装 MetaMask', {shade: 0.3, time: 30000});
+        layer.msg('您需要先安装 MetaMask', { shade: 0.3, time: 30000 });
     }
 
     if (web3.eth.coinbase === null) {
-        layer.msg('请解锁 MetaMask 并刷新此页面', {shade: 0.3, time: 30000});
+        layer.msg('请解锁 MetaMask 并刷新此页面', { shade: 0.3, time: 30000 });
     }
 
     web3.version.getNetwork(function (e, networkID) {
@@ -132,9 +132,18 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
         BlockDebit.info(web3.eth.coinbase).then(
             r => cb.debitInfo = r[0]
         ).then(function () {
-            $('#mortgage-eth').text(cb.debitInfo[0].toString() / 10 ** 18);
-            $('#repay-usdt').text(cb.debitInfo[1].toString() / 10 ** 6);
-            $('#repay-day').text(new Date(cb.debitInfo[2].toNumber() * 1000).format("yyyy-MM-dd hh:mm:ss"));
+            if (cb.debitInfo[0].toString() === '0') {
+                console.log('hide')
+                $('#debit-info').hide()
+                $('#debit-info-none').show()
+            } else {
+                console.log('show')
+                $('#mortgage-eth').text(cb.debitInfo[0].toString() / 10 ** 18);
+                $('#repay-usdt').text(cb.debitInfo[1].toString() / 10 ** 6);
+                $('#repay-day').text(new Date(cb.debitInfo[2].toNumber() * 1000).format("yyyy-MM-dd hh:mm:ss"));
+                $('#debit-info').show()
+                $('#debit-info-none').hide()
+            }
         })
         // 当前借贷利率
         BlockDebit.exchangeRate().then(
@@ -162,6 +171,7 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
     window.backDebit3 = backDebit3
     window.backDebit = backDebit
     window.update = update
+    window.cb = cb
 
     $('#apply-for-loan').click(function () {
         console.log("跳转" + $("#bocc-main").offset().top);

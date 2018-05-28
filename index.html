@@ -14,15 +14,12 @@
         <div class="layui-col-md12" style="height: 60px;">
           <div class="layui-row" style="line-height: 60px">
             <div class="layui-col-md3" style="text-align: center;">
-              <img style="width:100px;height:26px;" src="./images/logo.jpg" alt="">
+              <a href="https://www.bocc.one/"><img style="width:100px;height:26px;" src="./images/logo.jpg" alt=""></a>
             </div>
             <div class="layui-col-md3 layui-col-md-offset6">
               <ul class="bocc-menu">
                 <li class="bocc-menu-item">
                   <a href="javascript:void(0)" >白皮书</a>
-                </li>
-                <li class="bocc-menu-item">
-                  <a href="javascript:void(0)" style="color:#ddd;">借贷</a>
                 </li>
                 <li class="bocc-menu-item">
                   <a href="javascript:void(0)" >EN</a>
@@ -47,7 +44,7 @@
               <span>天</span>
             </div>
             <div class="item-detail">
-              <p>日利率 <span style="font-size: 17px;color: #555;">1.2‰</span></p>
+              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
               <p>到期一次还本付息</p>
               <button class="loan-btn" >短期便利租借</button>
             </div>
@@ -58,7 +55,7 @@
               <span>天</span>
             </div>
             <div class="item-detail">
-              <p>日利率 <span style="font-size: 17px;color: #555;">1.1‰</span></p>
+              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
               <p>到期一次还本付息</p>
               <button class="loan-btn">中期小盈易借</button>
             </div>
@@ -82,20 +79,21 @@
               <span>天</span>
             </div>
             <div class="item-detail">
-              <p>日利率 <span style="font-size: 17px;color: #555;">0.9‰</span></p>
+              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
               <p>到期一次还本付息</p>
               <button class="loan-btn">长期随意自由贷</button>
             </div>
           </div>
         </div>
-        <div class="bocc-content-item bocc-content-loan">
+        <div class="bocc-content-info bocc-content-loan">
           <p style="color:#333;">合约地址：<span id="contractadres"></span></p>
           <p >合约 USDT 资金池：<span id="ownertoken"></span></p>
           <p >合约 USDT 可转出：<span id="ownerapprove"></span></p>
 
           <p>您的钱包地址是：<span id="wallet-address"></span></p>
           <p>您目前有 <span id="have-dth"></span> 个ETH，<span id="have-usdt"></span> 个USDT</p>
-          <p>您目前的贷款信息：您抵押了 <span id="mortgage-eth"></span> 个ETH，您应该偿还 <span id="repay-usdt"></span> 个USDT，截止还款日是 <span id="repay-day"></span></p>
+          <p id='debit-info' style='display: none'>您目前的贷款信息：您抵押了 <span id="mortgage-eth"></span> 个ETH，您应该偿还 <span id="repay-usdt"></span> 个USDT，截止还款日是 <span id="repay-day"></span></p>
+          <p id='debit-info-none' style='display: none'>您目前的贷款信息：无</p>
           <p>当前贷款利率为：每个ETH可出借 <span id="loan-rate"></span> USDT</p>
         </div>
       </div>
