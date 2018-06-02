@@ -52,11 +52,6 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
         $('#repay-usdt').text(cb.debitInfo[1].toString() / 10 ** 6);
         $('#repay-day').text(new Date(cb.debitInfo[2].toNumber() * 1000).format("yyyy-MM-dd hh:mm:ss"));
         $('#loan-rate').text(cb.exchangeRate / 10 ** 4);
-
-        window.TetherTokenAddress = TetherTokenAddress
-        window.BlockDebitAddress = BlockDebitAddress
-        window.TetherToken = TetherToken
-        window.BlockDebit = BlockDebit
     });
 
     function giveDebit(giveDebitEther) {
@@ -90,6 +85,17 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
         })
     }
 
+    function backDebit() {
+        console.log('backDebit2', BlockDebitAddress, cb.debitInfo[1])
+        TetherToken.approve(BlockDebitAddress, cb.debitInfo[1], {
+            'from': web3.eth.coinbase
+        }).then(function () {
+            console.log('backDebit3')
+            BlockDebit.backDebit({
+                'from': web3.eth.coinbase
+            })
+        })
+    }
 
     function update() {
         BlockDebit.owner().then(r => cb.owner = r[0]).then(function () {
@@ -163,6 +169,7 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
     window.backDebit1 = backDebit1
     window.backDebit2 = backDebit2
     window.backDebit3 = backDebit3
+    window.backDebit = backDebit
     window.update = update
     window.cb = cb
 
