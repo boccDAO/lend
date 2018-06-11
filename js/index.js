@@ -18,15 +18,79 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
         ownerApprove: 0,
         user: "",
         daysInterest: 0,
-        blockDebitAddress: '',
+        blockDebitAddress: ''
     }
 
+    $('#apply-for-loan').click(function () {
+        console.log("跳转" + $("#bocc-main").offset().top);
+        $("html,body").animate({ scrollTop: $("#bocc-main").offset().top }, 500);
+    });
+
+    $('.bocc-loan-btn').hover(function () {
+        $(this).text('立即借款');
+    }, function () {
+        $(this).text($(this).attr('text-data'));
+    });
+
+    $('.bocc-loan-btn').on('click', function () {
+        if (typeof web3 == 'undefined') {
+            layer.msg('您需要先安装 MetaMask');
+            return;
+        }
+        console.log($(this).attr("days-data"));
+        days = $(this).attr("days-data");
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true,
+            area: ['400px', '320px'],
+            content: 'loan_window.html',
+            success: function (layero, index) {
+                var body = layer.getChildFrame('body', index);
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                // var inputList = body.find('input');
+                // for(var j = 0; j< inputList.length; j++){
+                //     $(inputList[j]).val(arr[j]);
+                // }
+            }
+        });
+    });
+
+    $('#loan-give').click(function () {
+        layer.open({
+            type: 2,
+            title: false,
+            closeBtn: 0,
+            shadeClose: true,
+            area: ['400px', '320px'],
+            content: 'back_window.html',
+            success: function (layero, index) {
+                var body = layer.getChildFrame('body', index);
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                // var inputList = body.find('input');
+                // for(var j = 0; j< inputList.length; j++){
+                //     $(inputList[j]).val(arr[j]);
+                // }
+            }
+        });
+    });
+
     if (typeof web3 == 'undefined') {
-        layer.msg('您需要先安装 MetaMask', { shade: 0.3, time: 30000 });
+        //layer.msg('您需要先安装 MetaMask', { shade: 0.3, time: 30000 });
+        console.log('安装metamask');
+        $('#bocc-user-info').hide();
+        $('#bocc-no-metamask').show();
+        return;
+    } else {
+        console.log('隐藏');
+        $('#bocc-user-info').show();
+        $('#bocc-no-metamask').hide();
     }
 
     if (web3.eth.coinbase === null) {
-        layer.msg('请解锁 MetaMask 并刷新此页面', { shade: 0.3, time: 30000 });
+        layer.msg('请解锁 MetaMask 并刷新此页面');
+        return;
     }
 
     web3.version.getNetwork(function (e, networkID) {
@@ -46,11 +110,11 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
 
         $('#contractadres').text(BlockDebitAddress);
         $('#wallet-address').text(cb.user);
-        $('#have-dth').text(cb.currentETH / 10 ** 18);
+        $('#have-eth').text(cb.currentETH / 10 ** 18);
         $('#have-usdt').text(cb.currentUSDT / 10 ** 6);
         $('#mortgage-eth').text(cb.debitInfo[0].toString() / 10 ** 18);
         $('#repay-usdt').text(cb.debitInfo[1].toString() / 10 ** 6);
-        $('#repay-day').text(new Date(cb.debitInfo[2].toNumber() * 1000).format("yyyy-MM-dd hh:mm:ss"));
+        $('#repay-date').text(new Date(cb.debitInfo[2].toNumber() * 1000).format("yyyy-MM-dd hh:mm:ss"));
         $('#loan-rate').text(cb.exchangeRate / 10 ** 4);
     });
 
@@ -119,29 +183,30 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
         web3.eth.getBalance(web3.eth.coinbase, function (err, balance) {
             if (err === null) {
                 cb.currentETH = balance.toNumber()
-                $('#have-dth').text(cb.currentETH / 10 ** 18);
+                a = new Number(cb.currentETH / 10 ** 18)
+                $('#have-eth').text(a.toFixed(3));
             }
         });
-        TetherToken.balanceOf(web3.eth.coinbase).then(
-            r => cb.currentUSDT = r[0].toNumber()
-        ).then(
-            r => $('#have-usdt').text(cb.currentUSDT / 10 ** 6)
-        );
+        TetherToken.balanceOf(web3.eth.coinbase).then(function (r) {
+            cb.currentUSDT = r[0].toNumber()
+            a = new Number(cb.currentUSDT / 10 ** 6)
+            $('#have-usdt').text(a.toFixed(3))
+        });
 
         // 借贷信息
         BlockDebit.info(web3.eth.coinbase).then(
             r => cb.debitInfo = r[0]
         ).then(function () {
             if (cb.debitInfo[0].toString() === '0') {
-                console.log('hide')
                 $('#debit-info').hide()
+                $('#debit-info-back').hide()
                 $('#debit-info-none').show()
             } else {
-                console.log('show')
                 $('#mortgage-eth').text(cb.debitInfo[0].toString() / 10 ** 18);
                 $('#repay-usdt').text(cb.debitInfo[1].toString() / 10 ** 6);
-                $('#repay-day').text(new Date(cb.debitInfo[2].toNumber() * 1000).format("yyyy-MM-dd hh:mm:ss"));
+                $('#repay-date').text(new Date(cb.debitInfo[2].toNumber() * 1000).format("yyyy-MM-dd"));
                 $('#debit-info').show()
+                $('#debit-info-back').show()
                 $('#debit-info-none').hide()
             }
         })
@@ -165,58 +230,13 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
         })
     }
 
-    window.giveDebit = giveDebit
-    window.backDebit1 = backDebit1
-    window.backDebit2 = backDebit2
-    window.backDebit3 = backDebit3
-    window.backDebit = backDebit
-    window.update = update
-    window.cb = cb
-
-    $('#apply-for-loan').click(function () {
-        console.log("跳转" + $("#bocc-main").offset().top);
-        $("html,body").animate({ scrollTop: $("#bocc-main").offset().top }, 500);
-    });
-
-    $('.bocc-content-item').on('click', function () {
-        console.log($(this).attr("data-days"));
-        days = $(this).attr("data-days");
-        layer.open({
-            type: 2,
-            title: false,
-            closeBtn: 0,
-            shadeClose: true,
-            area: ['400px', '320px'],
-            content: 'loan_window.html',
-            success: function (layero, index) {
-                var body = layer.getChildFrame('body', index);
-                var iframeWin = window[layero.find('iframe')[0]['name']];
-                // var inputList = body.find('input');
-                // for(var j = 0; j< inputList.length; j++){
-                //     $(inputList[j]).val(arr[j]);
-                // }
-            }
-        });
-    });
-
-    $('#loan-give').click(function () {
-        layer.open({
-            type: 2,
-            title: false,
-            closeBtn: 0,
-            shadeClose: true,
-            area: ['400px', '320px'],
-            content: 'back_window.html',
-            success: function (layero, index) {
-                var body = layer.getChildFrame('body', index);
-                var iframeWin = window[layero.find('iframe')[0]['name']];
-                // var inputList = body.find('input');
-                // for(var j = 0; j< inputList.length; j++){
-                //     $(inputList[j]).val(arr[j]);
-                // }
-            }
-        });
-    })
+    window.giveDebit = giveDebit;
+    window.backDebit1 = backDebit1;
+    window.backDebit2 = backDebit2;
+    window.backDebit3 = backDebit3;
+    window.backDebit = backDebit;
+    window.update = update;
+    window.cb = cb;
 
     Date.prototype.format = function (fmt) {
         var o = {

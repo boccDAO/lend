@@ -56,16 +56,16 @@
 .bocc-action > button {
   width: 140px;
   padding: 5px 20px;
-  background: transparent;
-  color: #686868;
-  border: 2px solid #2c2c2c;
+  background: #434343;
+  color: #eee;
+  border: 2px solid #434343;
   font-size: 14px;
   margin-left: 6px;
   margin-right: 6px;
 }
 
 .bocc-action > button:hover {
-  background: #2c2c2c;
+  background: #434343;
   color: #eee;
   cursor: pointer;
 }
@@ -156,13 +156,172 @@
   color: #333;
 }
 
+
+.bocc-loan-contain {
+  padding: 20px 100px;
+}
+
+.bocc-wallet-wrapper {
+  margin: 8px;
+  width: 200px;
+  height: 170px;
+  position: relative;
+  display: inline-block;
+}
+
+.bocc-wallet-wrapper .semi-circle {
+  width:10px;
+  height:5px;
+  position: absolute;
+  z-index: 11;
+  bottom: 60px;
+  left: 95px; 
+  background-color:#fff;
+  border-radius: 0 0 5px 5px;
+}
+
+.bocc-wallet-wrapper .wrapper1 {
+  background-color: #b32e25;
+  width: 200px;
+  height: 65px;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+}
+
+.bocc-wallet-wrapper .wrapper2 {
+  background-color: #350705;
+  width: 200px;
+  height: 90px;
+  border-radius: 8px;
+  position: absolute;
+  bottom: 0;
+  z-index: 5;
+}
+
+.bocc-wallet-wrapper .wrapper3 {
+  background-color: #fff;
+  width: 170px;
+  height: 110px;
+  border-radius: 3px;
+  position: absolute;
+  bottom: 65px;
+  left: 15px;
+  z-index: 5;
+  box-shadow: 1px 1px 8px #999;
+}
+
+.bocc-wallet-wrapper .bocc-loan-btn {
+  position: absolute;
+  z-index: 12;
+  border: none;
+  width: 160px;
+  height: 37px;
+  border-radius: 15px;
+  color: #b32e25;
+  background-color: #dac38c;
+  bottom: 14px;
+  left: 20px;
+  font-size: 18px;
+}
+
+.bocc-wallet-wrapper .bocc-loan-btn:hover {
+  cursor: pointer;
+}
+
+.bocc-loan-time {
+  width: 80px;
+  height: 60px;
+  margin: 0 auto 5px auto;
+  color: #b32e25;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.bocc-loan-time span.days-count {
+  font-size: 50px;
+}
+
+.bocc-rate {
+  color: #aeaeae;
+  font-size: 15px;
+}
+
+.bocc-rate span {
+  color: #b32e25;
+}
+
+.bocc-loan-address {
+  
+}
+
+.bocc-loan-address .addr-wrapper {
+  padding: 5px 0;
+  width: 500px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.bocc-loan-address .addr-wrapper .addr-label {
+  display: inline-block;
+  background: #010101;
+  border-radius: 8px;
+  width: 100px;
+  height: 20px;
+  color: #a9a9a9;
+  font-size: 12px;
+  padding-top: 3px;
+  text-align: center;
+}
+
+.bocc-loan-address .addr-wrapper .addr-val {
+  color: #313131;
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.bocc-loan-info-wrapper {
+  margin-top: 40px;
+}
+
+.bocc-panel {
+  background-color: #f2f2f2;
+  display: inline-block;
+  text-align: left;
+  padding: 10px 20px;
+  color: #b7b7b7;
+}
+
+.bocc-loan-info-wrapper p {
+  line-height: 30px;
+}
+
+.bocc-loan-info-wrapper p > span {
+  color: #333;
+}
+
+#loan-give {
+  background-color: #f3dfb3;
+  border: none;
+  width: 130px;
+  height: 28px;
+  border-radius: 8px;
+  color: #d40808;
+} 
+
+#loan-give:hover {
+  cursor: pointer;
+}
+
 .bocc-footer {
   padding-bottom: 150px;
   background-color: #141414;
 }
 
 .bocc-footer .bocc-network-title {
-  margin: 50px;
+  margin: 50px 0;
   font-size: 30px;
   text-align: center;
   color: #eee;

@@ -2,7 +2,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>BOCC</title>
+    <meta name="keywords" content="区块链借贷，智能合约抵押借贷">
+    <meta name="description" content="BOCC是全球首个基于EOS&ETH 区块链技术的数字资产“银行”。 是一个分布式数字资产管理、协作平台。BOCC币行提供基于数字资产的管理服务，包括借贷、量化、糖果、钱包、POS 矿池、去中心交易等，并提供各种资产服务工具。">
+    <link rel="icon" href="bocc.ico" type="image/x-icon"/>
+    <title>基于智能合约的抵押借贷</title>
     <link rel="stylesheet" href="./layui/css/layui.css">
     <link rel="stylesheet" href="./css/main.css">
   </head>
@@ -33,12 +36,12 @@
         </div>
         <div class="layui-col-md12 bocc-action">
           <button id="apply-for-loan">申请贷款</button>
-          <button id="loan-give">还款</button>
+          <!-- <button id="loan-give">还款</button> -->
         </div>
       </div>
       <div id="bocc-main" class="layui-row bocc-content">
         <div class="bocc-content-wrapper">
-          <div class="bocc-content-item" data-days="7" >
+          <!-- <div class="bocc-content-item" data-days="7" >
             <div class="item-days">
               <span class="days-num" style="display:inline-block;margin-left:50px;">7</span>
               <span>天</span>
@@ -84,17 +87,115 @@
               <button class="loan-btn">长期随意自由贷</button>
             </div>
           </div>
-        </div>
-        <div class="bocc-content-info bocc-content-loan">
+        </div> -->
+        <!-- <div class="bocc-content-info bocc-content-loan">
           <p style="color:#333;">合约地址：<span id="contractadres"></span></p>
           <p >合约 USDT 资金池：<span id="ownertoken"></span></p>
           <p >合约 USDT 可转出：<span id="ownerapprove"></span></p>
 
           <p>您的钱包地址是：<span id="wallet-address"></span></p>
-          <p>您目前有 <span id="have-dth"></span> 个ETH，<span id="have-usdt"></span> 个USDT</p>
+          <p>您目前有 <span id="have-eth"></span> 个ETH，<span id="have-usdt"></span> 个USDT</p>
           <p id='debit-info' style='display: none'>您目前的贷款信息：您抵押了 <span id="mortgage-eth"></span> 个ETH，您应该偿还 <span id="repay-usdt"></span> 个USDT，截止还款日是 <span id="repay-day"></span></p>
           <p id='debit-info-none' style='display: none'>您目前的贷款信息：无</p>
           <p>当前贷款利率为：每个ETH可出借 <span id="loan-rate"></span> USDT</p>
+        </div> -->
+        <div class="bocc-loan-contain">
+            <div class="bocc-wallet-wrapper">
+              <div class="wrapper1"></div>
+              <div class="wrapper2"></div>
+              <div class="wrapper3">
+                <div class="bocc-loan-time">
+                <span class="days-count">7</span>
+                <span>天</span>
+              </div>
+              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              </div>
+              <div class="semi-circle"></div>
+              <button class="bocc-loan-btn" text-data="短期便利租借" days-data="7">短期便利租借</button>
+            </div>
+            <div class="bocc-wallet-wrapper">
+              <div class="wrapper1"></div>
+              <div class="wrapper2"></div>
+              <div class="wrapper3">
+                <div class="bocc-loan-time">
+                <span class="days-count">15</span>
+                <span>天</span>
+              </div>
+              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              </div>
+              <div class="semi-circle"></div>
+              <button class="bocc-loan-btn" text-data="中期小盈易借" days-data="15" >中期小盈易借</button>
+            </div>
+            <div class="bocc-wallet-wrapper">
+              <div class="wrapper1"></div>
+              <div class="wrapper2"></div>
+              <div class="wrapper3">
+                <div class="bocc-loan-time">
+                <span class="days-count">30</span>
+                <span>天</span>
+              </div>
+              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              </div>
+              <div class="semi-circle"></div>
+              <button class="bocc-loan-btn" text-data="中长期无忧贷" days-data="30">中长期无忧贷</button>
+            </div>
+            <div class="bocc-wallet-wrapper">
+              <div class="wrapper1"></div>
+              <div class="wrapper2"></div>
+              <div class="wrapper3">
+                <div class="bocc-loan-time">
+                <span class="days-count">60</span>
+                <span>天</span>
+              </div>
+              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              </div>
+              <div class="semi-circle"></div>
+              <button class="bocc-loan-btn" text-data="长期随意自由贷" days-data="60">长期随意自由贷</button>
+            </div>
+          </div>
+          <div id="bocc-user-info" style="display:none;">
+            <div class="bocc-loan-address">
+              <div class="addr-wrapper">
+                <div class="addr-label">合约地址</div><span style="font-family: Consolas, Monaco, monospace" id="contractadres" class="addr-val"></span>
+              </div>
+              <div class="addr-wrapper">
+                <div class="addr-label">您的钱包地址</div><span style="font-family: Consolas, Monaco, monospace" id="wallet-address" class="addr-val"></span>
+              </div>
+            </div>
+            <div class="bocc-loan-info-wrapper">
+              <div class="bocc-panel" style="width: 200px;height:90px;">
+                <p>您的钱包尚有：</p>
+                <p><span id="have-eth"></span> 个ETH</p>
+                <p><span id="have-usdt"></span> 个USDT</p>
+              </div>
+              <div class="bocc-panel" style="margin-left: 30px;width: 420px;height: 90px;">
+                <div style="display: inline-block;width: 220px;">
+                  <p>您目前的贷款信息：</p>
+                  <div id='debit-info' style='display: none'>
+                    <p><span id="mortgage-eth"></span> 个已抵押ETH</p>
+                    <p><span id="repay-usdt"></span> 个需要偿还USDT</p>
+                  </div>
+                  <div id='debit-info-none'>
+                    <p>暂无贷款</p>
+                    <p>&nbsp</p>
+                  </div>
+                </div>
+                <div id='debit-info-back' style="display: inline-block;margin-left: 20px;height: 50px;text-align: center;vertical-align: top;margin-top: 20px;width:170px;">
+                  <button id="loan-give" >还款</button>
+                  <p style="font-size:11px;">截止还款日期 <span id="repay-date"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="bocc-no-metamask" class="bocc-panel" style="display:none;color:red;font-size:13px;" >
+            <p>您尚未绑定Metamask 钱包，请通过谷歌浏览器安装</p>
+            <p>Metamask 插件钱包进行使用。</p>
+            <p>Metamsk 下载地址:https://metamask.io/</p>
+          </div>
         </div>
       </div>
       <div class="layui-row bocc-footer">
