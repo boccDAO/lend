@@ -175,7 +175,7 @@
   position: absolute;
   z-index: 11;
   bottom: 60px;
-  left: 95px; 
+  left: 95px;
   background-color:#fff;
   border-radius: 0 0 5px 5px;
 }
@@ -253,7 +253,7 @@
 }
 
 .bocc-loan-address {
-  
+
 }
 
 .bocc-loan-address .addr-wrapper {
@@ -309,7 +309,7 @@
   height: 28px;
   border-radius: 8px;
   color: #d40808;
-} 
+}
 
 #loan-give:hover {
   cursor: pointer;
@@ -338,3 +338,7 @@
   padding: 40px 30px;
 }
 
+#bocc-no-metamask {
+  width:45%;
+  padding:20px 100px;
+}
