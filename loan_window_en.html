@@ -8,7 +8,7 @@
 
 <body>
   <div style="text-align: center;">
-    <h3 style="margin-top: 20px;text-align: center;">选择您用作抵押的币种</h3>
+    <h3 style="margin-top: 20px;text-align: center;">Choose one as pledge</h3>
     <form class="layui-form" action="">
       <div>
         <div class="currency-wrapper">
@@ -19,10 +19,18 @@
         <div class="currency-wrapper">
           <!-- <input type="radio" value= "btc" id= "btc" name="currency" style="display:none"> -->
           <img id="btc-img" class="currency" src="/images/btc.png" alt="" onclick="select(this.id)">
-          <span style="color:#aeaeae;">BTC(即将支持)</span>
+          <span style="color:#aeaeae;">BTC(Available soon)</span>
         </div>
       </div>
-      <button style="margin-top: 30px;" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="approveAndOK">授权并确认</button>
+      <div style="margin-top: 20px;text-align: center;font-size: 13px;">
+        <span style="color: #aeaeae;">Pledge Amount：</span>
+        <input type="text" name="number" lay-verify="required|number" style="width: 100px;margin-right:20px;" id="i-eth">
+        <span style="color: #aeaeae">borrow
+          <span>
+            <span style="color: #333" id="o-usdt"> 0 </span>
+          </span>USDT</span>
+      </div>
+      <button style="margin-top: 30px;" class="layui-btn layui-btn-normal" lay-submit="" lay-filter="loan">Submit</button>
     </form>
   </div>
 </body>
@@ -46,8 +54,9 @@
 
 <script src="/layui/layui.js"></script>
 <script>
-  layui.use(['form'], function () {
+  layui.use(['form', 'jquery'], function () {
     var form = layui.form;
+    var $ = layui.jquery;
 
     var ethRadio = document.getElementById('eth');
     var ethImg = document.getElementById('eth-img');
@@ -57,28 +66,18 @@
     ethImg.style.border = '2px solid #51b6e9';
     ethImg.style.borderRadius = '50px';
 
-    form.on('submit(approveAndOK)', function (data) {
+    form.on('submit(loan)', function (data) {
       parent.layer.close(parent.layer.getFrameIndex(window.name));
-
-      parent.backDebit()
-
+      parent.giveDebit(data.field.number);
       return false;
     });
+
+    $("#i-eth").keyup(function () {
+      $("#o-usdt").text($("#i-eth").val() * parent.cb.exchangeRate / 10000)
+    });
+
   });
 
-  function select(sId) {
-    // var oImg = document.getElementsByTagName('img');
-
-    // for (var i = 0; i < oImg.length; i++) {
-    //   if (oImg[i].id == sId) {
-    //     oImg[i].previousSibling.previousSibling.checked = true;
-    //     oImg[i].style.border = '2px solid #51b6e9';
-    //     oImg[i].style.borderRadius = '50px';
-    //   } else {
-    //     oImg[i].style.border = 'none';
-    //   }
-    // }
-  }
 
 </script>
 

@@ -1,6 +1,9 @@
 var canvas = document.getElementById("star");  
+window.addEventListener('resize', function(){
+    canvas.width = window.innerWidth
+})
     canvas.width = document.documentElement.clientWidth;  
-    canvas.height = 350;  
+    canvas.height = 740;
     var ctx = canvas.getContext("2d");  
     //创建小球的构造函数  
     function Ball() {  
@@ -72,8 +75,8 @@ var canvas = document.getElementById("star");
                         ctx.beginPath();  
                         ctx.moveTo(balls[i].x, balls[i].y);  
                         ctx.lineTo(balls[j].x, balls[j].y);  
-                        ctx.strokeStyle = "rgba(255,255,255,0.2)";  
-                        ctx.globalAlpha = 0.2;  
+                        ctx.strokeStyle = "rgba(255,255,255,0.3)";  
+                        ctx.globalAlpha = 0.25;  
                         ctx.stroke();  
                     }  
                 }  

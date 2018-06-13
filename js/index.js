@@ -27,16 +27,21 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
     });
 
     $('.bocc-loan-btn').hover(function () {
-        $(this).text('立即借款');
+        $(this).text(location.pathname === '/' ?  'Borrowing' : '立即借款');
     }, function () {
         $(this).text($(this).attr('text-data'));
     });
 
     $('.bocc-loan-btn').on('click', function () {
         if (typeof web3 == 'undefined') {
-            layer.msg('您需要先安装 MetaMask');
+            layer.msg(location.pathname === '/' ? 'You have not bundled the metamask wallet' : '您需要先安装 MetaMask');
             return;
         }
+        if (web3.eth.coinbase === null) {
+            layer.msg(location.pathname === '/' ? 'You have to unlock metamask' : '请解锁 MetaMask 并刷新此页面');
+            return;
+        }
+
         console.log($(this).attr("days-data"));
         days = $(this).attr("days-data");
         layer.open({
@@ -45,7 +50,7 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
             closeBtn: 0,
             shadeClose: true,
             area: ['400px', '320px'],
-            content: 'loan_window.html',
+            content: location.pathname === '/' ? '/loan_window_en.html' : '/loan_window.html',
             success: function (layero, index) {
                 var body = layer.getChildFrame('body', index);
                 var iframeWin = window[layero.find('iframe')[0]['name']];
@@ -64,7 +69,7 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
             closeBtn: 0,
             shadeClose: true,
             area: ['400px', '320px'],
-            content: 'back_window.html',
+            content: location.pathname === '/' ? '/back_window_en.html' : '/back_window.html' ,
             success: function (layero, index) {
                 var body = layer.getChildFrame('body', index);
                 var iframeWin = window[layero.find('iframe')[0]['name']];
@@ -88,10 +93,6 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
         $('#bocc-no-metamask').hide();
     }
 
-    if (web3.eth.coinbase === null) {
-        layer.msg('请解锁 MetaMask 并刷新此页面');
-        return;
-    }
 
     web3.version.getNetwork(function (e, networkID) {
         TetherTokenAddress = TetherTokenJSON.networks[networkID].address;
@@ -119,7 +120,6 @@ layui.define(['layer', 'element', 'jquery'], function (exports) {
     });
 
     function giveDebit(giveDebitEther) {
-        console.log(days, giveDebitEther)
         BlockDebit.giveDebit(days, {
             'from': web3.eth.coinbase,
             'value': web3.toWei(giveDebitEther, 'ether'),

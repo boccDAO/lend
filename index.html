@@ -1,394 +1,174 @@
 <!doctype html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="keywords" content="区块链借贷，智能合约抵押借贷">
-    <meta name="description" content="BOCC是全球首个基于EOS&ETH 区块链技术的数字资产“银行”。 是一个分布式数字资产管理、协作平台。BOCC币行提供基于数字资产的管理服务，包括借贷、量化、糖果、钱包、POS 矿池、去中心交易等，并提供各种资产服务工具。">
-    <link rel="icon" href="bocc.ico" type="image/x-icon"/>
-    <title>BOCC, 基于智能合约的抵押借贷</title>
-    <link rel="stylesheet" href="./layui/css/layui.css">
-    <link rel="stylesheet" href="./css/main.css">
-  </head>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="keywords" content="Blockchain lending ，Smart Contracts lending">
+        <meta name="description" content="BOCC,The first Bank of CryptoCurrency based on EOS/ETH.It is a distributed digital asset management and collaboration platform.BOCC Bank provides digital asset-based management services, including lending, quantification, candy, wallets, POS mining pools, decentralized transactions, and various asset service tools.">
+        <link rel="icon" href="/bocc.ico" type="image/x-icon"/>
+        <title>BOCC, lending based on smart contracts</title>
+        <link rel="stylesheet" href="/layui/css/layui.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
 
   <body>
     <div class="layui-fluid" style="padding: 0 0">
       <canvas id="star"></canvas>
       <div class="layui-row bocc-header">
         <div class="layui-col-md12" style="height: 60px;">
-          <div class="layui-row" style="line-height: 60px">
-            <div class="layui-col-md3" style="text-align: center;">
-              <a href="https://www.bocc.one/"><img style="width:100px;height:26px;" src="./images/logo.jpg" alt=""></a>
-            </div>
-            <div class="layui-col-md3 layui-col-md-offset6">
-              <ul class="bocc-menu">
-                <li class="bocc-menu-item">
-                  <a href="javascript:void(0)" >白皮书</a>
-                </li>
-                <li class="bocc-menu-item">
-                  <a href="/help.pdf" target="view_window">帮助</a>
-                </li>
-                <li class="bocc-menu-item">
-                  <a href="javascript:void(0)" >EN</a>
-                </li>
-              </ul>
-            </div>
+          <div class="layui-row header-nav" style="line-height: 60px">
+              <a href="https://www.bocc.one/"><img style="width:100px;height:26px;" src="/images/logo.jpg" alt=""></a>
+                <span class="header-right">
+                    <a href="javascript:void(0)" >WhitePaper</a>
+                    <a href="/help.pdf" target="view_window">Help</a>
+                    <a href="/cn" >CN</a>
+                </span>
           </div>
         </div>
         <div class="layui-col-md12 bocc-slogan">
-          <p><span>极速</span>放款&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资金<span>安全</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>灵活</span>还款</p>
+          <div>
+            <p><span>Speedy</span> </p>
+              <p> <span>Security</span></p>
+              <p><span>Flexible</span> </p>
+          </div>
         </div>
         <div class="layui-col-md12 bocc-action">
-          <button id="apply-for-loan">申请贷款</button>
-          <!-- <button id="loan-give">还款</button> -->
+          <button id="apply-for-loan">Borrowing</button>
         </div>
       </div>
       <div id="bocc-main" class="layui-row bocc-content">
         <div class="bocc-content-wrapper">
-          <!-- <div class="bocc-content-item" data-days="7" >
-            <div class="item-days">
-              <span class="days-num" style="display:inline-block;margin-left:50px;">7</span>
-              <span>天</span>
-            </div>
-            <div class="item-detail">
-              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
-              <p>到期一次还本付息</p>
-              <button class="loan-btn" >短期便利租借</button>
-            </div>
-          </div>
-          <div class="bocc-content-item" data-days="15">
-            <div class="item-days">
-              <span class="days-num">15</span>
-              <span>天</span>
-            </div>
-            <div class="item-detail">
-              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
-              <p>到期一次还本付息</p>
-              <button class="loan-btn">中期小盈易借</button>
-            </div>
-          </div>
-        </div>
-        <div class="bocc-content-wrapper">
-          <div class="bocc-content-item" data-days="30">
-            <div class="item-days">
-              <span class="days-num" >30</span>
-              <span>天</span>
-            </div>
-            <div class="item-detail">
-              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
-              <p>到期一次还本付息</p>
-              <button class="loan-btn">中长期无忧贷</button>
-            </div>
-          </div>
-          <div class="bocc-content-item" data-days="60">
-            <div class="item-days">
-              <span class="days-num">60</span>
-              <span>天</span>
-            </div>
-            <div class="item-detail">
-              <p>日利率 <span style="font-size: 17px;color: #555;">1.0‰</span></p>
-              <p>到期一次还本付息</p>
-              <button class="loan-btn">长期随意自由贷</button>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="bocc-content-info bocc-content-loan">
-          <p style="color:#333;">合约地址：<span id="contractadres"></span></p>
-          <p >合约 USDT 资金池：<span id="ownertoken"></span></p>
-          <p >合约 USDT 可转出：<span id="ownerapprove"></span></p>
-
-          <p>您的钱包地址是：<span id="wallet-address"></span></p>
-          <p>您目前有 <span id="have-eth"></span> 个ETH，<span id="have-usdt"></span> 个USDT</p>
-          <p id='debit-info' style='display: none'>您目前的贷款信息：您抵押了 <span id="mortgage-eth"></span> 个ETH，您应该偿还 <span id="repay-usdt"></span> 个USDT，截止还款日是 <span id="repay-day"></span></p>
-          <p id='debit-info-none' style='display: none'>您目前的贷款信息：无</p>
-          <p>当前贷款利率为：每个ETH可出借 <span id="loan-rate"></span> USDT</p>
-        </div> -->
         <div class="bocc-loan-contain">
             <div class="bocc-wallet-wrapper">
               <div class="wrapper1"></div>
               <div class="wrapper2"></div>
               <div class="wrapper3">
-                <div class="bocc-loan-time">
+                <div class="bocc-loan-time bocc-loan-time-en">
                 <span class="days-count">7</span>
-                <span>天</span>
+                <span class="days-unit">days</span>
               </div>
-              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
-              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              <p class="bocc-rate bocc-rate-en">Day rate <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;"></p>
               </div>
               <div class="semi-circle"></div>
-              <button class="bocc-loan-btn" text-data="短期便利租借" days-data="7">短期便利租借</button>
+              <button class="bocc-loan-btn bocc-loan-btn-en" text-data="Short-term for liquidity" days-data="7">Short-term for liquidity</button>
             </div>
             <div class="bocc-wallet-wrapper">
               <div class="wrapper1"></div>
               <div class="wrapper2"></div>
               <div class="wrapper3">
-                <div class="bocc-loan-time">
+                <div class="bocc-loan-time bocc-loan-time-en">
                 <span class="days-count">15</span>
-                <span>天</span>
+                <span class="days-unit">days</span>
               </div>
-              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
-              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              <p class="bocc-rate bocc-rate-en">Day rate <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;"></p>
               </div>
               <div class="semi-circle"></div>
-              <button class="bocc-loan-btn" text-data="中期小盈易借" days-data="15" >中期小盈易借</button>
+              <button class="bocc-loan-btn bocc-loan-btn-en" text-data="Medium-term lending facility" days-data="15" >Medium-term lending facility</button>
             </div>
             <div class="bocc-wallet-wrapper">
               <div class="wrapper1"></div>
               <div class="wrapper2"></div>
               <div class="wrapper3">
-                <div class="bocc-loan-time">
+                <div class="bocc-loan-time bocc-loan-time-en">
                 <span class="days-count">30</span>
-                <span>天</span>
+                <span class="days-unit">days</span>
               </div>
-              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
-              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              <p class="bocc-rate bocc-rate-en">Day rate <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;"></p>
               </div>
               <div class="semi-circle"></div>
-              <button class="bocc-loan-btn" text-data="中长期无忧贷" days-data="30">中长期无忧贷</button>
+              <button class="bocc-loan-btn bocc-loan-btn-en" text-data="Term Loans longer than medium" days-data="30">Longer than medium loan</button>
             </div>
             <div class="bocc-wallet-wrapper">
               <div class="wrapper1"></div>
               <div class="wrapper2"></div>
               <div class="wrapper3">
-                <div class="bocc-loan-time">
+                <div class="bocc-loan-time bocc-loan-time-en">
                 <span class="days-count">60</span>
-                <span>天</span>
+                <span class="days-unit">days</span>
               </div>
-              <p class="bocc-rate">日利率 <span>1.0‰</span></p>
-              <p style="color: #aeaeae;font-size: 10px;">到期一次还本付息</p>
+              <p class="bocc-rate bocc-rate-en">Day rate <span>1.0‰</span></p>
+              <p style="color: #aeaeae;font-size: 10px;"></p>
               </div>
               <div class="semi-circle"></div>
-              <button class="bocc-loan-btn" text-data="长期随意自由贷" days-data="60">长期随意自由贷</button>
+              <button class="bocc-loan-btn bocc-loan-btn-en" text-data="Long-term lending as will" days-data="60">Long-term lending as will</button>
             </div>
           </div>
           <div id="bocc-user-info" style="display:none;">
             <div class="bocc-loan-address">
               <div class="addr-wrapper">
-                <div class="addr-label">合约地址</div><span style="font-family: Consolas, Monaco, monospace" id="contractadres" class="addr-val"></span>
+                <div class="addr-label">Contract Address</div><span style="font-family: Consolas, Monaco, monospace" id="contractadres" class="addr-val"></span>
               </div>
               <div class="addr-wrapper">
-                <div class="addr-label">您的钱包地址</div><span style="font-family: Consolas, Monaco, monospace" id="wallet-address" class="addr-val"></span>
+                <div class="addr-label">Your wallet Address</div><span style="font-family: Consolas, Monaco, monospace" id="wallet-address" class="addr-val"></span>
               </div>
             </div>
             <div class="bocc-loan-info-wrapper">
               <div class="bocc-panel" style="width: 200px;height:90px;">
-                <p>您的钱包尚有：</p>
-                <p><span id="have-eth"></span> 个ETH</p>
-                <p><span id="have-usdt"></span> 个USDT</p>
+                <p>Token in Wallet</p>
+                <p>ETH: <span id="have-eth"></span></p>
+                <p>USDT: <span id="have-usdt"></span></p>
               </div>
               <div class="bocc-panel" style="margin-left: 30px;width: 420px;height: 90px;">
                 <div style="display: inline-block;width: 220px;">
-                  <p>您目前的贷款信息：</p>
+                  <p>Current loan information</p>
                   <div id='debit-info' style='display: none'>
-                    <p><span id="mortgage-eth"></span> 个已抵押ETH</p>
-                    <p><span id="repay-usdt"></span> 个需要偿还USDT</p>
+                    <p>Secured ETH: <span id="mortgage-eth"></span></p>
+                    <p>Need to be repaid USDT: <span id="repay-usdt"></span></p>
                   </div>
                   <div id='debit-info-none'>
-                    <p>暂无贷款</p>
+                    <p>No loan</p>
                     <p>&nbsp</p>
                   </div>
                 </div>
                 <div id='debit-info-back' style="display: inline-block;margin-left: 20px;height: 50px;text-align: center;vertical-align: top;margin-top: 20px;width:170px;">
-                  <button id="loan-give" >还款</button>
-                  <p style="font-size:11px;">截止还款日期 <span id="repay-date"></span></p>
+                  <button id="loan-give" >repayment</button>
+                  <p style="font-size:11px;">Due date <span id="repay-date"></span></p>
                 </div>
               </div>
             </div>
           </div>
-          <div id="bocc-no-metamask" class="bocc-panel" style="display:none;color:red;font-size:14px;" >
-            <p>您尚未绑定 Metamask 钱包，请通过谷歌浏览器安装 <a href="https://metamask.io/" target="view_window" style="color:blue">Metamask</a> 插件钱包进行使用。</p>
+          <div id="bocc-no-metamask" class="no-wallet" style="display:none;color:red;font-size:14px;" >
+            <p>
+                You have not bundled the metamask wallet
+                </p>
+                <p>
+                    Please install the <a href="https://metamask.io/" target="view_window" style="color:blue">Metamask</a> wallet through the Google Chrome browser
+                </p>
             <hr>
-            <a href="/help.pdf" target="view_window" style="color:blue">查看帮助</a>
+            <a class="help" href="/help.pdf" target="view_window" style="color:blue">Help</a>
           </div>
         </div>
       </div>
-      <div class="layui-row bocc-footer">
-        <div class="layui-col-md12 bocc-network-title">下一代的借贷金融<span style="color: yellow;">网络</span></div>
-        <div class="bocc-network-img">
+      <div class="bocc-network">
+        <div class="bocc-network-title">A next-gen financial <span style="color: yellow;">ecosystem</span> rebuild the rule of loan </div>
+        <div class="bocc-network-imgs">
           <div class="img">
-            <object data="./images/1.svg" style="width: 150px;height: 300px;" type="image/svg+xml"></object>
+            <img src="/images/en/1.svg"></img>
           </div>
           <div class="img">
-            <object data="./images/2.svg" style="width: 300px;height: 300px;" type="image/svg+xml"></object>
+            <img src="/images/en/2.svg"></img>
           </div>
           <div class="img">
-            <object data="./images/3.svg" style="width: 360px;height: 300px;" type="image/svg+xml"></object>
+            <img src="/images/en/3.svg"></img>
           </div>
         </div>
       </div>
     </div>
 
-    <script src="./layui/layui.js"></script>
-    <script src="./js/star.js"></script>
-    <script type="text/javascript" src="./js/BlockDebit.js"></script>
-    <script type="text/javascript" src="./js/TetherToken.js"></script>
+    <script src="/layui/layui.js"></script>
+    <script src="/js/star.js"></script>
+    <script type="text/javascript" src="/js/BlockDebit.js"></script>
+    <script type="text/javascript" src="/js/TetherToken.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ethjs@0.3.4/dist/ethjs.min.js"></script>
     <script src="https://cdn.bootcss.com/bignumber.js/6.0.0/bignumber.min.js"></script>
     <script>
         layui.config({
-          base: './js/'
+          base: '/js/'
         }).use('index');
     </script>
-      <!-- <div class="container-fluid" id="cb">
-
-          <div>
-              <p>合约地址 {{ blockDebitAddress }}</p>
-              <p>合约 owner {{ owner }}</p>
-              <p>合约 owner USDT 余额 {{ ownerToken / 10**6 }} USDT</p>
-              <p>合约 owner 当前允许借出 {{ ownerApprove / 10**6 }} USDT</p>
-          </div>
-          <hr>
-          <div>
-              <p>你的地址是: {{ user }}. 友情提示: 如果这里是 null, 请重新刷新页面</p>
-              <p>目前有 {{currentETH / 10 ** 18}} 个以太, {{currentUSDT / 10 ** 6}} USDT</p>
-              <p>你目前的借贷信息: 你抵押了{{ debitInfo[0].toString() / 10**18 }} 以太, 你应该还 {{ debitInfo[1].toString() / 10**6 }} USDT, 截止日期是
-                  {{ new Date(debitInfo[2].toNumber() * 1000) }}</p>
-              <p>当前借贷兑出率: {{ exchangeRate / 10**4}} (每以太可借出 USDT)</p>
-          </div>
-
-          <div class="row">
-              <input v-model="giveDebitEther" type="text" class="form-control" placeholder="666" aria-describedby="basic-addon1">
-              <span class="input-group-addon" id="basic-addon2">Ether</span>
-          </div>
-
-          <div class="row">
-              <input v-model="giveDebitDay" type="text" class="form-control" placeholder="666" aria-describedby="basic-addon1" v-on:change="updateDaysInterest">
-              <span class="input-group-addon" id="basic-addon2">天, 利率是万分之{{ daysInterest }}</span>
-          </div>
-
-          <div class="row">
-              <button class="btn btn-default" type="button" v-on:click="giveDebit">我要抵押</button>
-          </div>
-
-          <br>
-
-          <div class="row">
-              <button class="btn btn-default" type="button" v-on:click="backDebit1">我要还款1: 重置 USDT approve</button>
-          </div>
-          <div class="row">
-              <button class="btn btn-default" type="button" v-on:click="backDebit2">我要还款2: 设置 USDT approve</button>
-          </div>
-          <div class="row">
-              <button class="btn btn-default" type="button" v-on:click="backDebit3">我要还款3: 还款</button>
-          </div>
-      </div>
-
-      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-      <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
-      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ethjs@0.3.4/dist/ethjs.min.js"></script>
-      <script src="https://cdn.bootcss.com/bignumber.js/6.0.0/bignumber.min.js"></script>
-      <script type="text/javascript" src="./js/BlockDebit.js"></script>
-      <script type="text/javascript" src="./js/TetherToken.js"></script>
-      <script>
-          if (typeof web3 == 'undefined') {
-              alert('No web3? You should consider trying MetaMask!')
-          }
-
-          if (web3.eth.coinbase === null) {
-              setTimeout(function(){
-                  location.reload();
-              }, 3000)
-          }
-
-          web3.version.getNetwork(function (e, networkID) {
-              TetherTokenAddress = TetherTokenJSON.networks[networkID].address;
-              BlockDebitAddress = BlockDebitJSON.networks[networkID].address;
-
-              console.log(TetherTokenAddress, BlockDebitAddress);
-              console.log(web3.eth.coinbase)
-
-              eth = new Eth(web3.currentProvider);
-
-              const TetherTokenABI = TetherTokenJSON.abi
-              const TetherToken = eth.contract(TetherTokenABI).at(TetherTokenAddress);
-
-              const BlockDebitABI = BlockDebitJSON.abi
-              const BlockDebit = eth.contract(BlockDebitABI).at(BlockDebitAddress);
-
-              var cb = new Vue({
-                  el: '#cb',
-                  data: {
-                      inited: false,
-                      giveDebitEther: 1,
-                      giveDebitDay: 7,
-                      currentETH: 0,
-                      currentUSDT: 0,
-                      debitInfo: [new BigNumber(123.4567), new BigNumber(123.4567), new BigNumber(123.4567), new BigNumber(0), new BigNumber(0)],
-                      exchangeRate: 0,
-                      owner: 0,
-                      ownerToken: 0,
-                      ownerApprove: 0,
-                      user: "",
-                      daysInterest: 0,
-                      blockDebitAddress: BlockDebitAddress,
-                  },
-                  methods: {
-                      update: function () {
-                          BlockDebit.owner().then(r => cb.owner = r[0]).then(function () {
-                              TetherToken.balanceOf(cb.owner).then(r => cb.ownerToken = r[0].toNumber());
-                          }).then(function () {
-                              TetherToken.allowance(cb.owner, BlockDebitAddress).then(r => cb.ownerApprove = r[0].toNumber())
-                          });
-
-                          // ------------------------------------------------------------
-                          cb.user = web3.eth.coinbase
-
-                          // ------------------------------------------------------------
-                          web3.eth.getBalance(web3.eth.coinbase, function (err, balance) {
-                              if (err === null) {
-                                  cb.currentETH = balance.toNumber()
-                              }
-                          });
-                          TetherToken.balanceOf(web3.eth.coinbase).then(r => cb.currentUSDT = r[0].toNumber());
-
-                          // 借贷信息
-                          BlockDebit.info(web3.eth.coinbase).then(r => cb.debitInfo = r[0])
-                          // 当前借贷利率
-                          BlockDebit.exchangeRate().then(r => cb.exchangeRate = r[0].toNumber())
-                      },
-                      updateDaysInterest: function () {
-                          console.log('updateDaysInterest')
-
-                          BlockDebit.getInterest(cb.giveDebitDay).then(function (r) {
-                              web3.eth.getBlockNumber(function (err, n) {
-                                  if (n > r[0][1].toNumber()) {
-                                      cb.daysInterest = r[0][2].toNumber()
-                                  } else {
-                                      cb.daysInterest = r[0][0].toNumber()
-                                  }
-                              })
-                          })
-                      },
-                      giveDebit: function () {
-                          BlockDebit.giveDebit(cb.giveDebitDay, {
-                              'from': web3.eth.coinbase,
-                              'value': web3.toWei(cb.giveDebitEther, 'ether'),
-                              'gasLimit': 400000,
-                          }).then(function () {
-                              cb.update()
-                          })
-                      },
-                      backDebit1: function () {
-                          TetherToken.approve(BlockDebitAddress, 0, {
-                              'from': web3.eth.coinbase
-                          })
-                      },
-                      backDebit2: function () {
-                          TetherToken.approve(BlockDebitAddress, cb.debitInfo[1], {
-                              'from': web3.eth.coinbase
-                          });
-                      },
-                      backDebit3: function () {
-                          BlockDebit.backDebit({
-                              'from': web3.eth.coinbase
-                          })
-                      }
-                  }
-              })
-              cb.update()
-              cb.updateDaysInterest()
-          })
-      </script> -->
-  </body>
+    </body>
 
 </html>

@@ -1,50 +1,66 @@
 .bocc-header {
-  height: 350px;
-  background: #1b1b1b;
+  height: 740px;
+  background: url(/images/bg.png) center bottom no-repeat;
+  position: relative;
 }
 
 #star {
-  background: #1b1b1b;
+  background: black;
   width: 100%;
-  height: 350px;
+  height: 740px;
   position: absolute;
 }
 
-.bocc-menu {
-  position: relative;
-  color: #686868;
+.header-nav {
+  max-width: 1170px;
+  padding: 0 20px;
+  margin: auto;
 }
 
-.bocc-menu .bocc-menu-item {
-  position: relative;
-  float: left;
-  cursor: pointer;
-  margin: 0;
-  padding: 0 15px;
-  display: block;
-  white-space: nowrap;
-  background: 0 0;
+.header-right {
+  float: right;
 }
 
-.bocc-menu-item > a {
+.header-right a {
   color: #575757;
-  font-size: 14px;
-  text-decoration: none;
+  height: 40px;
+  padding: 10px;
 }
 
-.bocc-menu-item > a:hover {
-  color: #ddd;
+@media screen and (max-width: 350px) {
+  .header-nav {
+    padding: 0 10px;
+  }
+  .header-right a {
+    padding: 10px 4px;
+  }
+}
+
+.header-right a:hover {
+  color: #ccc;
 }
 
 .bocc-slogan {
-  margin-top: 20px;
-    font-size: 40px;
-    font-weight: 400;
-    color: #eee;
-    text-align: center;
+  margin-top: 180px;
+  font-size: 40px;
+  font-weight: 400;
+  color: #eee;
+  text-align: center;
 }
 
-.bocc-slogan > p > span {
+.bocc-slogan p {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+@media screen and (max-width: 670px) {
+  .bocc-slogan p {
+    display: block;
+    margin-bottom: 14px;
+  }
+}
+
+.bocc-slogan p>span {
   color: yellow;
 }
 
@@ -53,25 +69,33 @@
   text-align: center;
 }
 
-.bocc-action > button {
+.bocc-action>button {
   width: 140px;
   padding: 5px 20px;
   background: #434343;
   color: #eee;
   border: 2px solid #434343;
   font-size: 14px;
+  margin-top: 140px;
   margin-left: 6px;
   margin-right: 6px;
+  line-height: 26px;
 }
 
-.bocc-action > button:hover {
+@media screen and (max-width: 670px) {
+  .bocc-action>button {
+    margin-top: 80px;
+  }
+}
+
+.bocc-action>button:hover {
   background: #434343;
   color: #eee;
   cursor: pointer;
 }
 
 .bocc-content {
-  padding: 60px;
+  padding: 60px 0;
   text-align: center;
 }
 
@@ -101,7 +125,7 @@
   vertical-align: text-bottom;
 }
 
-.bocc-content-item .item-detail > p {
+.bocc-content-item .item-detail>p {
   margin-bottom: 5px;
 }
 
@@ -148,21 +172,21 @@
   font-size: 13px;
 }
 
-.bocc-content-loan > p {
+.bocc-content-loan>p {
   margin: 15px 0;
 }
 
-.bocc-content-loan > p > span {
+.bocc-content-loan>p>span {
   color: #333;
 }
 
-
 .bocc-loan-contain {
-  padding: 20px 100px;
+  padding: 20px 10%;
 }
 
 .bocc-wallet-wrapper {
   margin: 8px;
+  margin-bottom: 30px;
   width: 200px;
   height: 170px;
   position: relative;
@@ -170,24 +194,25 @@
 }
 
 .bocc-wallet-wrapper .semi-circle {
-  width:10px;
-  height:5px;
+  width: 10px;
+  height: 5px;
   position: absolute;
   z-index: 11;
   bottom: 60px;
   left: 95px;
-  background-color:#fff;
+  background-color: #fff;
   border-radius: 0 0 5px 5px;
 }
 
 .bocc-wallet-wrapper .wrapper1 {
-  background-color: #b32e25;
   width: 200px;
   height: 65px;
   border-radius: 8px;
   position: absolute;
   bottom: 0;
   z-index: 10;
+  background-color: #b32e25;
+  background-image: linear-gradient(#A22015, #78140d);
 }
 
 .bocc-wallet-wrapper .wrapper2 {
@@ -221,9 +246,14 @@
   border-radius: 15px;
   color: #b32e25;
   background-color: #dac38c;
+  background-image: linear-gradient(#f7e8c4, #c7b37c);
   bottom: 14px;
   left: 20px;
   font-size: 18px;
+}
+
+.bocc-wallet-wrapper .bocc-loan-btn.bocc-loan-btn-en {
+  font-size: 12px;
 }
 
 .bocc-wallet-wrapper .bocc-loan-btn:hover {
@@ -239,6 +269,10 @@
   border-bottom: 1px solid #eee;
 }
 
+.bocc-loan-time.bocc-loan-time-en {
+  width: 100px;
+}
+
 .bocc-loan-time span.days-count {
   font-size: 50px;
 }
@@ -248,12 +282,12 @@
   font-size: 15px;
 }
 
-.bocc-rate span {
-  color: #b32e25;
+.bocc-rate.bocc-rate-en {
+  margin-top: 14px;
 }
 
-.bocc-loan-address {
-
+.bocc-rate span {
+  color: #b32e25;
 }
 
 .bocc-loan-address .addr-wrapper {
@@ -267,7 +301,7 @@
   display: inline-block;
   background: #010101;
   border-radius: 8px;
-  width: 100px;
+  width: 120px;
   height: 20px;
   color: #a9a9a9;
   font-size: 12px;
@@ -294,11 +328,23 @@
   color: #b7b7b7;
 }
 
+.no-wallet {
+  padding: 10px 20px;
+  background-color: #f2f2f2;
+  color: #b7b7b7;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.no-wallet p {
+  line-height: 26px;
+}
+
 .bocc-loan-info-wrapper p {
   line-height: 30px;
 }
 
-.bocc-loan-info-wrapper p > span {
+.bocc-loan-info-wrapper p>span {
   color: #333;
 }
 
@@ -315,30 +361,56 @@
   cursor: pointer;
 }
 
-.bocc-footer {
-  padding-bottom: 150px;
+#bocc-no-metamask {
+  width: 80%;
+  padding: 20px 30px;
+  max-width: 700px;
+  box-sizing: border-box;
+}
+
+#bocc-no-metamask a.help {
+  font-size: 20px;
+}
+
+.bocc-network {
   background-color: #141414;
 }
 
-.bocc-footer .bocc-network-title {
-  margin: 50px 0;
+.bocc-network-title {
+  color: white;
   font-size: 30px;
   text-align: center;
-  color: #eee;
+  padding: 40px 10px;
 }
 
-.bocc-footer .bocc-network-img {
+.bocc-network-imgs {
   text-align: center;
+  margin: auto;
+  padding-bottom: 40px;
 }
 
-.bocc-network-img .img {
-  margin: 0 15px;
+.bocc-network .img {
+  vertical-align: bottom;
   display: inline-block;
-  background: white;
-  padding: 40px 30px;
+  font-size: 0;
+  background-color: white;
+  height: 100%;
+  padding: 40px 10px;
+  line-height: 300px;
+  margin: 8px;
 }
 
-#bocc-no-metamask {
-  width:45%;
-  padding:20px 100px;
+.bocc-network img {
+  vertical-align: middle;
+  height: 250px;
+}
+
+@media screen and (max-width: 578px) {
+  .bocc-network .img {
+    width: 90%
+  }
+  .bocc-network img {
+    height: auto;
+    width: 80%;
+  }
 }
